@@ -33,8 +33,6 @@
             color : rgb(255, 255, 255);
             font-size: 20px;
             padding: 15px;
-            padding-left: 15px;
-            padding-right: 15px;
             background-color: rgb(15, 179, 146);
             width: 100px;
             font-weight: 700;
@@ -48,12 +46,13 @@
 
 <body>
     <div class="gridBox">
-        <button class="btn" onclick="reset()">Reset</button>
+        <div><button class="btn" onclick="reset()">Reset</button>
         <button class="btn" onclick="erase()">Erase</button>
-    
-        <div class="gridBox" id="mainBox">
+        <button class="btn" onclick="brush()">Draw</button>
+    </div>
+    <div class="gridBox" id="mainBox">
 
-        </div>
+    </div>
     </div>
     <script>
 
@@ -76,7 +75,7 @@
                 let sm = document.getElementsByClassName("colBox")[i];
                 let smBox = document.createElement("div");
                 smBox.classList.add("smallBox");
-                smBox.style.padding = `${200/dim}px`;
+                smBox.style.padding = `${230/dim}px`;
 
                 smBox.addEventListener("mouseover", function() {
                    smBox.style.backgroundColor = "black"; 
@@ -91,18 +90,30 @@
     }
         }
 
-        function erase() {
-    let smBoxes = document.getElementsByClassName("smallBox");
+    function erase() {
+          let smBoxes = document.getElementsByClassName("smallBox");
 
-    for (let i = 0; i < smBoxes.length; i++) {
-        smBoxes[i].addEventListener("mouseover", function () {
+        for (let i = 0; i < smBoxes.length; i++) {
+             smBoxes[i].addEventListener("mouseover", function () {
             smBoxes[i].style.backgroundColor = "white";
-        });
-        smBoxes[i].addEventListener("dblclick", function () {
+              });
+             smBoxes[i].addEventListener("dblclick", function () {
             smBoxes[i].style.backgroundColor = undefined;
-        });
+            });
+        }
     }
-}
+    function brush(){
+         let smBoxes = document.getElementsByClassName("smallBox");
+
+        for (let i = 0; i < smBoxes.length; i++) {
+             smBoxes[i].addEventListener("mouseover", function () {
+            smBoxes[i].style.backgroundColor = "black";
+              });
+             smBoxes[i].addEventListener("dblclick", function () {
+            smBoxes[i].style.backgroundColor = undefined;
+            });
+        }
+    }
     </script>
 </body>
 </html>
