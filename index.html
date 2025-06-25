@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .colBox{
+            display: flex;
+            margin: 0%;
+        }
+        .smallBox{
+            border: 1px solid;
+            border-color:rgb(146, 145, 145);
+            background-color: rgb(255, 255, 255);
+            padding: 4px;
+            margin: 0;
+        }
+        .gridBox{
+            display: flex;
+            flex-direction: column;
+            align-items: center; 
+    
+        }
+        #mainBox{
+            border: 1px solid black;
+        }
+        .btn{
+            border-radius: 4px;
+            border-right-color: azure;
+            border-bottom-color: azure;
+            border-width: 0px;
+            color : rgb(255, 255, 255);
+            font-size: 20px;
+            padding: 15px;
+            padding-left: 15px;
+            padding-right: 15px;
+            background-color: rgb(15, 179, 146);
+            width: 100px;
+            font-weight: 700;
+            margin: 2px 20px 20px 20px;
+        }
+        body{
+            background-color: rgb(126, 135, 143);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="gridBox">
+        <button class="btn" onclick="reset()">Reset</button>
+        <button class="btn" onclick="erase()">Erase</button>
+    
+        <div class="gridBox" id="mainBox">
+
+        </div>
+    </div>
+    <script>
+
+        function reset(){
+        
+
+        let dim = prompt("Set the dimension: ");
+        
+        if(dim!=null){
+
+        let clear = document.getElementById("mainBox");
+        clear.innerHTML="";
+
+         for(var i = 0 ; i<dim; i++){
+            let mn = document.querySelector("#mainBox");
+            let col = document.createElement("div");
+            col.classList.add("colBox");
+            mn.appendChild(col);
+            for(var j = 0; j<dim ; j++){
+                let sm = document.getElementsByClassName("colBox")[i];
+                let smBox = document.createElement("div");
+                smBox.classList.add("smallBox");
+                smBox.style.padding = `${200/dim}px`;
+
+                smBox.addEventListener("mouseover", function() {
+                   smBox.style.backgroundColor = "black"; 
+                });
+                smBox.addEventListener("dblclick", function(){
+                    smBox.style.backgroundColor = undefined;
+                });
+                sm.appendChild(smBox);
+            }
+
+        }
+    }
+        }
+
+        function erase() {
+    let smBoxes = document.getElementsByClassName("smallBox");
+
+    for (let i = 0; i < smBoxes.length; i++) {
+        smBoxes[i].addEventListener("mouseover", function () {
+            smBoxes[i].style.backgroundColor = "white";
+        });
+        smBoxes[i].addEventListener("dblclick", function () {
+            smBoxes[i].style.backgroundColor = undefined;
+        });
+    }
+}
+    </script>
+</body>
+</html>
